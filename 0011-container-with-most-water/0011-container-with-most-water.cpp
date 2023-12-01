@@ -1,28 +1,6 @@
 class Solution {
 public:
     
-//   pair<int,int> left(int index , vector<int> &height){
-//         int max =   0 ,count=0;
-//         for(int i=index-1;i>=0;i--){
-//             if(height[i]>=max){
-//                 max = height[i];
-//                 count=i;
-//             }
-//         }
-//         return {max,count-index};
-//     }
-    
-//      pair<int,int> right(int index , vector<int> &height){
-//         int max = 0 ,count=0;
-//         for(int i=index+1;i<height.size();i++){
-//             if(height[i]>=max){
-//                 max = height[i];
-//                 count = i;
-//             }
-//         }
-//         return {max,count-index};
-//     }
-    
     int maxArea(vector<int>& height) {
         
         if(height.size()==2)
@@ -31,29 +9,26 @@ public:
         if(height.size()==1)
             return height[0];
         
-        
         int maxi=INT_MIN;
+    
         int mini = INT_MAX;
-//         for(int i=1;i<height.size()-1;i++){
-            
-//             pair<int,int> l = left(i,height);
-//             pair<int,int> r = right(i,height);
-//             mini = min(l.first,r.first);
-//             maxi = max(maxi , mini*(l.second+r.second) );
-            
-//         }
-        
-        int start=0,end=height.size()-1;
+        int start=0;
+        int end=height.size()-1;
         
         while(start<end){
-            mini =  min(height[start],height[end]);
-            int capacity = mini*(end-start);
-            maxi = max(maxi,capacity);
-            if(height[start]<height[end]){
-                start++;
+            
+            mini =  min(height[start],height[end]); // fetches minimum of two heights
+            int capacity = mini*(end-start);    // multiplying minimum height with distance between two heights
+            
+            maxi = max(maxi,capacity);   // storing maximum value of water trapped among each heights
+
+
+            // increases lower value because we want the maximum water trap value.
+            if(height[start]<height[end]){   
+                start++;            // if start pointer has low value it will get increased      
             }
             else{
-                end--;
+                end--;             // if end pointer has low value it will get decreased.
             }
         }
         
