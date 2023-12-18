@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string s) {
-       
+        
         s = s +" ";
         
         int i=0,j=0;
