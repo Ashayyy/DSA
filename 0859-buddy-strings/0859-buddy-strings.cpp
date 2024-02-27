@@ -50,6 +50,8 @@ public:
                 a[goal[i]]--;
                 b[s[i]]--;
             }
+            if(count>2)
+                return false;
         }
         
         // if count is 2 then only 1 swap required else false.
